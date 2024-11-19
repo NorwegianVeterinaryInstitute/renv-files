@@ -18,19 +18,23 @@ jobs:
       with:
         r-version: '4.4.1'
 
-    - name: Set up renv
-      uses: r-lib/actions/setup-renv@v2
-   
+    - name: Install renv
+      run: |
+        Rscript -e "install.packages('renv')"
+
     - name: Find changed renv.lock files
       id: find-changes
       run: |
-        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'renv.lock')" >> $GITHUB_ENV
+        files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'renv.lock' || true)
+        echo "files=$files" >> $GITHUB_ENV
 
     - name: Rebuild R environments
       if: env.files != ''
       run: |
         for file in ${{ env.files }}; do
           dir=$(dirname "$file")
-          echo "Building renv for $dir"
-          Rscript -e "renv::restore(lockfile = '$dir/renv.lock')"
+          echo "Restoring renv environment for $dir"
+          Rscript -e "setwd('$dir'); renv::restore()"
         done
+      env:
+        RENV_PATHS_CACHE: ~/.cache/R/renv # Enable caching for dependencies
