@@ -1,50 +1,46 @@
 name: Build renv environments
 
 on:
-  push:
+  pull_request:
     paths:
       - '**/renv.lock'
   workflow_dispatch: 
 
-jobs:
+obs:
   build-renv:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Update apt-get
-      run: sudo apt-get update
+      # 2. Set up R environment
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.1' # Specify your desired R version
 
-    - name: Install system dependencies
-      run: |
-        echo "Installing system dependencies from requirements.txt"
-        xargs sudo apt-get install -y < requirements.txt
+      # 3. Install system dependencies
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y $(cat requirements.txt)
 
-    - name: Set up R
-      uses: r-lib/actions/setup-r@v2
-      with:
-        r-version: '4.4.1'
+      # 4. Install renv package in R
+      - name: Install renv
+        run: |
+          Rscript -e "install.packages('renv')"
 
-    - name: Install renv
-      run: |
-        Rscript -e "install.packages('renv')"
-
-    - name: Find changed renv.lock files
-      id: find-changes
-      run: |
-        git fetch --prune --unshallow || true
-        files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'renv.lock' || true)
-        echo "files=$files" >> $GITHUB_ENV
-      shell: bash
-
-    - name: Rebuild R environments
-      if: env.files != ''
-      run: |
-        for file in ${{ env.files }}; do
+      # 5. Rebuild the R environment for the changed renv.lock file
+      - name: Rebuild R environment
+        run: |
+          # Extract the changed renv.lock file
+          file=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} | grep 'renv.lock')
           dir=$(dirname "$file")
+
           echo "Restoring renv environment for $dir"
-          Rscript -e "setwd('$dir'); renv::restore()"
-        done
-      env:
-        RENV_PATHS_CACHE: ~/.cache/R/renv # Enable caching for dependencies
+          cd "$dir"
+          Rscript -e "renv::restore(prompt = FALSE)"
+        env:
+          RENV_PATHS_CACHE: ~/.cache/R/renv
