@@ -14,6 +14,8 @@ jobs:
       # 1. Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # 2. Set up R environment
       - name: Set up R
@@ -36,7 +38,7 @@ jobs:
       - name: Rebuild R environment
         run: |
           # Extract the changed renv.lock file
-          file=$(git diff --name-only ${{ github.base_ref }} ${{ github.head_ref }} | grep 'renv.lock')
+          file=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep 'renv.lock')
           dir=$(dirname "$file")
 
           echo "Restoring renv environment for $dir"
