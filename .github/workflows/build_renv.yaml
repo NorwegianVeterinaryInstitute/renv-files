@@ -25,8 +25,10 @@ jobs:
     - name: Find changed renv.lock files
       id: find-changes
       run: |
+        git fetch --prune --unshallow || true
         files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'renv.lock' || true)
         echo "files=$files" >> $GITHUB_ENV
+      shell: bash
 
     - name: Rebuild R environments
       if: env.files != ''
