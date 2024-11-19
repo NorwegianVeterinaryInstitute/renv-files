@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - '**/renv.lock'
-  workflow_dispach: 
+  workflow_dispatch: 
 
 jobs:
   build-renv:
