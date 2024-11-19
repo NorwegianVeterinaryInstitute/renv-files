@@ -6,7 +6,7 @@ on:
       - '**/renv.lock'
   workflow_dispatch: 
 
-obs:
+jobs:
   build-renv:
     runs-on: ubuntu-latest
 
