@@ -514,6 +514,11 @@
       ],
       "Hash": "45f0398006e83a5b10b72a90663d8d8c"
     },
+    "RJSONIO": {
+      "Package": "RJSONIO",
+      "Version": "1.3.1.11",
+      "Source": "Repository"
+    },
     "RSQLite": {
       "Package": "RSQLite",
       "Version": "2.3.7",
@@ -1223,6 +1228,11 @@
       ],
       "Hash": "ead409e5a973cd285681c3bb0ade49a7"
     },
+    "fitdistrplus": {
+      "Package": "fitdistrplus",
+      "Version": "1.2.2",
+      "Source": "Repository"
+    },
     "fontawesome": {
       "Package": "fontawesome",
       "Version": "0.5.2",
@@ -1356,6 +1366,11 @@
         "withr"
       ],
       "Hash": "44c6a2f8202d5b7e878ea274b1092426"
+    },
+    "ggrepel": {
+      "Package": "ggrepel",
+      "Version": "0.9.6",
+      "Source": "Repository"
     },
     "glasso": {
       "Package": "glasso",
