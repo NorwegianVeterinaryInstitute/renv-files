@@ -4,7 +4,7 @@
     "Repositories": [
       {
         "Name": "VIPM",
-        "URL": "https://package-manager.posit.vetinst.no/cran/__linux__/rhel9/latest/"
+        "URL": "https://package-manager.posit.vetinst.no/cran/__linux__/rhel9/latest"
       },
       {
         "Name": "CRAN",
@@ -2204,17 +2204,9 @@
     },
     "qs": {
       "Package": "qs",
-      "Version": "0.27.2",
+      "Version": "0.27.3",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "BH",
-        "R",
-        "RApiSerialize",
-        "Rcpp",
-        "stringfish"
-      ],
-      "Hash": "54716cfa710dfa4fa63eae0244661478"
+      "Repository": "VIPM"
     },
     "rappdirs": {
       "Package": "rappdirs",
@@ -2432,13 +2424,7 @@
       "Package": "stringfish",
       "Version": "0.16.0",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "RcppParallel"
-      ],
-      "Hash": "b7eb79470319ae71d4b5ed9cd7bf7294"
+      "Repository": "VIPM"
     },
     "stringi": {
       "Package": "stringi",
