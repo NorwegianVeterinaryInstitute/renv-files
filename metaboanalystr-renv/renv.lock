@@ -3,10 +3,6 @@
     "Version": "4.4.1",
     "Repositories": [
       {
-        "Name": "VIPM",
-        "URL": "https://package-manager.posit.vetinst.no/cran/__linux__/rhel9/latest"
-      },
-      {
         "Name": "CRAN",
         "URL": "https://packagemanager.posit.co/cran/latest"
       }
@@ -2206,7 +2202,7 @@
       "Package": "qs",
       "Version": "0.27.3",
       "Source": "Repository",
-      "Repository": "VIPM"
+      "Repository": "CRAN"
     },
     "rappdirs": {
       "Package": "rappdirs",
@@ -2424,7 +2420,7 @@
       "Package": "stringfish",
       "Version": "0.16.0",
       "Source": "Repository",
-      "Repository": "VIPM"
+      "Repository": "CRAN"
     },
     "stringi": {
       "Package": "stringi",
