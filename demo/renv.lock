@@ -5,7 +5,11 @@
       {
         "Name": "CRAN",
         "URL": "https://package-manager.posit.vetinst.no/cran/latest"
-      }
+      },
+  {
+    "Name": "FallbackCRAN",
+    "URL": "https://cloud.r-project.org"
+  }
     ]
   },
   "Packages": {
