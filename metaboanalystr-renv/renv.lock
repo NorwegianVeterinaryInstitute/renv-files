@@ -326,6 +326,7 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "MetaboAnalystR",
       "RemoteUsername": "xia-lab",
+      "RemoteSha": "a2a0e4877fd94c613544e8302de5a28645480c93",
       "Requirements": [
         "BiocParallel",
         "Cairo",
